@@ -4,7 +4,6 @@ from restaurant import Restaurant, Food, Drink, Table
 
 
 def setup_restaurant():
-    """Sukuria restoraną su pavyzdiniu meniu ir staliukais"""
     restaurant = Restaurant("Gero Apetito Restoranas")
 
     loaded = restaurant.load_menu_from_csv()
@@ -59,15 +58,12 @@ def main():
 
         choice = input("Pasirink (0-9): ").strip()
 
-        # ---- 1: RODYTI MENIU ----
         if choice == "1":
             restaurant.display_menu()
 
-        # ---- 2: RODYTI STALIUKUS ----
         elif choice == "2":
             restaurant.display_tables()
 
-        # ---- 3: SUKURTI UZSAKYMA ----
         elif choice == "3":
             restaurant.display_tables()
             try:
@@ -77,7 +73,6 @@ def main():
             except ValueError as e:
                 print(f"[KLAIDA] {e}")
 
-        # ---- 4: PRIDETI PATIEKALA ----
         elif choice == "4":
             try:
                 table_num = int(input("Staliuko numeris: "))
@@ -102,7 +97,6 @@ def main():
             except ValueError as e:
                 print(f"[KLAIDA] {e}")
 
-        # ---- 5: RODYTI SASKALTA ----
         elif choice == "5":
             try:
                 table_num = int(input("Staliuko numeris: "))
@@ -114,7 +108,6 @@ def main():
             except ValueError:
                 print("[KLAIDA] Neteisingas numeris!")
 
-        # ---- 6: UZDARYTI UZSAKYMA ----
         elif choice == "6":
             try:
                 table_num = int(input("Staliuko numeris: "))
@@ -131,7 +124,6 @@ def main():
             except ValueError:
                 print("[KLAIDA] Neteisingas numeris!")
 
-        # ---- 7: DIENOS PAJAMOS ----
         elif choice == "7":
             revenue = restaurant.get_daily_revenue()
             paid_orders = [o for o in restaurant.get_all_orders() if o.is_paid]
@@ -141,7 +133,6 @@ def main():
             print(f"  Dienos pajamos:    EUR {revenue:.2f}")
             print_separator()
 
-        # ---- 8: VALDYTI MENU ----
         elif choice == "8":
             print("\n1. Prideti maista")
             print("2. Prideti gerima")
@@ -182,12 +173,10 @@ def main():
                 else:
                     print(f"[KLAIDA] '{name}' nerastas!")
 
-        # ---- 9: ISSAUGOTI ----
         elif choice == "9":
             restaurant.save_orders_to_csv()
             print("[OK] Uzsakymai issaugoti i orders.csv")
 
-        # ---- 0: ISEITI ----
         elif choice == "0":
             restaurant.save_orders_to_csv()
             print("\nIki pasimatymo! Viso gero!")
